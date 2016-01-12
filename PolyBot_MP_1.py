@@ -10,7 +10,7 @@ irc.send ( 'NICK PolyBot\r\n' )
 irc.send ( 'USER PolyBot PolyBot PolyBot :Python IRC\r\n' )
 irc.send ( 'JOIN #modernpowers\r\n' )
 time.sleep(10)
-irc.send ( 'PRIVMSG nickserv identify pjmtpjmt\r\n' )
+irc.send ( 'PRIVMSG nickserv identify <pass>\r\n' )
 
 while True:
    data = irc.recv ( 4096 )
