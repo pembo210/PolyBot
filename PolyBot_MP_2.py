@@ -71,6 +71,7 @@ while True:
 
     if data.find ( 'Welcome to...' ) != -1:
             Join(homechan)
+            irc.send('/MODE PolyBot +B')
 
     if data.find ( 'PING' ) != -1:
             irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
