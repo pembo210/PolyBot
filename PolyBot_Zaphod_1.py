@@ -83,5 +83,5 @@ while True:
         nick = nick.replace(' ', '')
         nick = nick.strip(' \t\n\r')
         datafile = file('joinlog.txt')
-        Send(wb + ' ' + nick)
+        Send(wb + ' ' + nick + ', Talk about shit here; Orange and Green are Friends and Teal (and ChanServ) are bots.')
 
