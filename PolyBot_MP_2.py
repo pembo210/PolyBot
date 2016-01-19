@@ -83,7 +83,7 @@ while True:
     if data.find ( 'PING' ) != -1:
             irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
             
-    if irc.find ('PolyBot :VERSION')
+    if irc.find ('PolyBot :VERSION'):
     	ctcpversion(data)
 
     #--------------------------- Action check --------------------------------#
