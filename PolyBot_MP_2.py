@@ -4,7 +4,7 @@ from random import randint
 import re
 import time
 import random
-
+nick = Polygoner
 #----------------------------------- Settings --------------------------------------#
 network = 'irc.goat.chat'
 port = 6667
