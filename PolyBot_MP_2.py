@@ -63,6 +63,13 @@ def NewNick():
             found = True
             break
     return found
+    
+def ctcpversion(data):
+# response to VERSION querys
+	x = data.split('#')[0]
+	user = x.split('!')[0]
+	user[0] = user[0].strip(':' + ' \t\n\r')
+	irc.send('NOTICE ' + user + ' :VERSION PolyBot 2.0 / Linux Raspbian')
 #------------------------------------------------------------------------------#
 while True:
     action = 'none'
@@ -75,6 +82,9 @@ while True:
 
     if data.find ( 'PING' ) != -1:
             irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
+            
+    if irc.find ('PolyBot :VERSION')
+    	ctcpversion(data)
 
     #--------------------------- Action check --------------------------------#
     if data.find('#') != -1:
