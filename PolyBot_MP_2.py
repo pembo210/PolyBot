@@ -4,7 +4,6 @@ from random import randint
 import re
 import time
 import random
-nick = 'Polygoner'
 #----------------------------------- Settings --------------------------------------#
 network = 'irc.goat.chat'
 port = 6667
@@ -64,9 +63,6 @@ def NewNick():
             break
     return found
     
-def ctcpversion(data):
-	GetNick(data)
-	irc.send('NOTICE ' + nick + ' :VERSION PolyBot 2.0 / Linux Raspbian')
 #------------------------------------------------------------------------------#
 while True:
     action = 'none'
@@ -80,8 +76,6 @@ while True:
     if data.find ( 'PING' ) != -1:
             irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
             
-    if data.find ('PolyBot :VERSION'):
-    	ctcpversion(data)
 
     #--------------------------- Action check --------------------------------#
     if data.find('#') != -1:
