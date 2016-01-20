@@ -135,7 +135,7 @@ while True:
 					nick = nick.replace(':', ' ')
 					nick = nick.replace(' ', '')
 					nick = nick.strip(' \t\n\r')
-					Send('Im sorry ' + nick + ', I cannot do that.')
+					Send('I'm sorry '+ nick +', I'm afraid I can't do that')
     if action == 'JOIN':
         open("joinlog.txt", 'a').write(data)
         time.sleep(0.5)
