@@ -57,7 +57,7 @@ while True:
 		if action == 'PRIVMSG':
 			if data.find('Zaphod, ') != -1:
 				x = data.split('#')[1]
-				x = x.split('Zaphod, ')[1]
+				x = x.split('Zaphod,')[1]
 				info = x.split(' ')
 				info[0] = info[0].strip(' \t\n\r')
 
