@@ -96,7 +96,7 @@ while True:
 				x = x.split('v/')[1]
 				subverse = x.split(' ')
 				subverse[0] = subverse[0].strip(' \t\n\r')
-				Send('voat.co/v/' + subverse
+				Send('voat.co/v/' + subverse)
 				
 			if data.find('PolyBot, ') != -1:
 				x = data.split('#')[1]
