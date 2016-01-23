@@ -17,34 +17,6 @@ irc.send ( 'USER PolyBot PolyBot PolyBot :Python IRC\r\n' )
 #----------------------------------------------------------------------------------#
 
 #---------------------------------- Functions -------------------------------------#
-def readAdmin(host):                        # Return status 0/1
-    bestand = open('admins.txt', 'r')
-    for line in bestand:
-        if host in line:
-            status = 1
-            return status
-        else:
-            status = 0
-            return status
-
-def GetHost(host):                            # Return Host
-    host = host.split('@')[1]
-    host = host.split(' ')[0]
-    return host
-
-def GetChannel(data):                        # Return Channel
-    channel = data.split('#')[1]
-    channel = channel.split(':')[0]
-    channel = '#' + channel
-    channel = channel.strip(' \t\n\r')
-    return channel
-
-def GetNick(data):                            # Return Nickname
-    nick = data.split('!')[0]
-    nick = nick.replace(':', ' ')
-    nick = nick.replace(' ', '')
-    nick = nick.strip(' \t\n\r')
-    return nick
 
 def Send(msg):
     irc.send('PRIVMSG ' + homechan + ' :' + msg +  '\r\n')
@@ -96,8 +68,7 @@ while True:
 				x = x.split('v/')[1]
 				subverse = x.split(' ')
 				subverse[0] = subverse[0].strip(' \t\n\r')
-                                tosend = (str('voat.co/v/') + subverse)
-				Send(tosend)
+				Send(str('voat.co/v/') + subverse)
 				
 			if data.find('PolyBot, ') != -1:
 				x = data.split('#')[1]
