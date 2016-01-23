@@ -96,6 +96,8 @@ while True:
 				x = x.split('v/')[1]
 				subverse = x.split(' ')
 				subverse[0] = subverse[0].strip(' \t\n\r')
+				list1 = [subverse]
+				subverse = ''.join(list1)
                                 tosend = ('voat.co/v/' + subverse)
 				Send(tosend)
 				
