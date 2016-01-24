@@ -67,7 +67,7 @@ while True:
 				x = data.split('#')[1]
 				x = x.split('v/')[1]
 				subverse = x.split(' ')
-				subverse[0] = subverse[0].strip(' \r\n' + subverse[1])
+				subverse[0] = subverse[0].strip('\r\n' + subverse[1])
 				subverse = str(subverse[0])
 				Send(str('voat.co/v/') + subverse)
 				
