@@ -67,10 +67,10 @@ while True:
 
 
 #test data
-		data = '#test v/test test'
-		data2 = '#test v/test'
-		data3 = '#v/test test'
-		data4 = '#mess up your test!# v/test test'
+			data = '#test v/test test'
+			data2 = '#test v/test'
+			data3 = '#v/test test'
+			data4 = '#mess up your test!# v/test test'
 
 			if data.find('v/') != -1:
  				match = re.search('v/(\w*)', data)
