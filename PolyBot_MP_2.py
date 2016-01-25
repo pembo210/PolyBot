@@ -4,6 +4,7 @@ from random import randint
 import re
 import time
 import random
+
 #----------------------------------- Settings --------------------------------------#
 network = 'irc.goat.chat'
 port = 6667
@@ -63,13 +64,18 @@ while True:
 		
 		if action == 'PRIVMSG':
 			
+
+
+#test data
+		data = '#test v/test test'
+		data2 = '#test v/test'
+		data3 = '#v/test test'
+		data4 = '#mess up your test!# v/test test'
+
 			if data.find('v/') != -1:
-				x = data.split('#')[1]
-				x = x.split('v/')[1]
-				subverse = x.split(' ')
-				subverse[0] = subverse[0].strip('\r\n' + subverse[1])
-				subverse = str(subverse[0])
-				Send(str('voat.co/v/') + subverse)
+ 				match = re.search('v/(\w*)', data)
+				for group in match.groups():
+				Send(str('voat.co/v/') + group)
 				
 			if data.find('PolyBot, ') != -1:
 				x = data.split('#')[1]
