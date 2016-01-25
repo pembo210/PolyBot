@@ -67,7 +67,7 @@ while True:
 			if data.find('v/') != -1:
  				match = re.search('v/(\w*)', data)
 				for group in match.groups():
-					Send(str('[https://voat.co/v/') + group + str(']'))
+					Send(str('[voat.co/v/') + group + str(']'))
 				
 			if data.find('PolyBot, ') != -1:
 				x = data.split('#')[1]
