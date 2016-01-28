@@ -45,6 +45,8 @@ while True:
     if data.find ( 'Welcome to...' ) != -1:
             Join(homechan)
             irc.send('MODE PolyBot +B')
+            time.sleep(2)
+            data = ''
 
     if data.find ( 'PING' ) != -1:
             irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
@@ -66,7 +68,7 @@ while True:
 
 			if data.find('v/') != -1:
 				if data.find('http://voat.co/' or 'https://voat.co/'):
-					print('full URL, not linking')
+					print('full URL, not linking'/r/n)
 				else:
  					match = re.search('v/(\w*)', data)
 					for group in match.groups():
