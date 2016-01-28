@@ -67,7 +67,7 @@ while True:
 			if data.find('v/') != -1:
 				if data.find('http://voat.co/' or 'https://voat.co/'):
 					print('full URL, not linking')
-				else
+				else:
  					match = re.search('v/(\w*)', data)
 					for group in match.groups():
 						Send(str('[voat.co/v/') + group + str(']'))
