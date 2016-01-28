@@ -67,7 +67,7 @@ while True:
 		if action == 'PRIVMSG':
 
 			if data.find('v/') != -1:
-				if data.find('http://voat.co/' or 'https://voat.co/'):
+				if data.find('jenni'):
 					print('full URL, not linking')
 				else:
  					match = re.search('v/(\w*)', data)
