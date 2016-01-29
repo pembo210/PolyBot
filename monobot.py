@@ -5,6 +5,8 @@ import re
 import time
 import random
 
+joinlog = file('joinlog.txt')
+
 #----------------------------------- Settings --------------------------------------#
 network = 'irc.goat.chat'
 port = 6667
@@ -28,40 +30,47 @@ def Join(channel):
 def Part(chan):
     irc.send ( 'PART ' + chan + '\r\n' )
 
-def GetMsg(data)
+def GetMsg()
 	x = data.split('#')[1]
 	x = x.split(':')[1]
 	info[0] = info[0].strip(' \t\n\r')
 	return(message)
-	
-def GetNick(data)
-	nick = data.split('!')[0]
+
+def GetNick()
+    nick = data.split('!')[0]
 	nick = nick.replace(':', ' ')
-      	nick = nick.replace(' ', '')
-      	nick = nick.strip(' \t\n\r')
-      	return nick
-      	
-def Joins(data)
-      	time.sleep(0.5)
-      	wb = random.choice(["Welcome Back", "Hello", "Welcome"])
-	GetNick(data)
-      	datafile = file('joinlog.txt')
-      	open("joinlog.txt", 'a').write(data)
-      	for line in datafile:
-  		if nick in line:
-  			Send(wb + ' ' + nick)
-            		break
-         else:
-            	Send('Welcome To The Matrix, ' +nick)
-            	open("joinlog.txt", 'a').write(data)
-    
-    
-def GetChan(data)
+    nick = nick.replace(' ', '')
+    nick = nick.strip(' \t\n\r')
+    return nick
+
+def UserJoins()
+    time.sleep(0.5)
+    wb = random.choice(["Welcome Back", "Hello", "Welcome"])
+    GetNick(data)
+    for line in joinlog:
+        if nick in line:
+            Send(wb + ' ' + nick)
+            break
+        else:
+            Send('Welcome To The Matrix, ' +nick)
+            open(joinlog, 'a').write(data)
+
+def ChanLang()
+    GetChan()
+    if chan == "hira"
+        lang = 'es'
+    else
+        lang = 'en'
+
+
+def GetChan()
 	chan1 = data.split('PRIVMSG ')[1]
 	chan1 = chan1.replaec(':', ' ')
-      	chan1 = chan1.replace(' ', '')
-      	chan1 = chan1.strip(' \t\n\r')
-      	return chan
+    chan1 = chan1.replace(' ', '')
+    chan1 = chan1.strip('#')
+    chan1 = chan1.split(' ')
+    return chan
+
 #sample :jesuspiece|america!~jesuspiece@net-d32.1t2.215.74.IP PRIVMSG #modernpowers :hahah you're good
 #------------------------------------------------------------------------------#
 while True:
@@ -75,7 +84,7 @@ while True:
 
     if data.find ( 'PING' ) != -1:
             irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
-            
+
 
     #--------------------------- Action check --------------------------------#
     if data.find('#') != -1:
@@ -88,8 +97,16 @@ while True:
 
     #----------------------------- Actions -----------------------------------#
     if action != 'none':
-		
+
 		if action == 'PRIVMSG':
 
-		if action == 'JOIN':
-      Joins(data)
+            GetMessage(data)
+            if message = info
+                GetChan()
+                ChanLang()
+                if lang == 'en'
+                    if chan == 'modernpowers'
+                        Send(chan, 'This is the IRC channel for v/modernpowers')
+
+        if action == 'JOIN':
+            Joins()
