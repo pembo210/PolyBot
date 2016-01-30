@@ -1,6 +1,3 @@
-# PolyBot
-PolyBot
+# Goat.Chat Bots
 
-An IRC bot i wrote for #modernpowers on irc.goat.chat.
-
-there may be forks for other channels in the future.
+This is a colaborative repo for the Bots on the Goat.Chat IRC network
