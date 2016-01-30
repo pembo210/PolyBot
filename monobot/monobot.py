@@ -5,8 +5,6 @@ import re
 import time
 import random
 
-joinlog = file('joinlog.txt')
-
 #----------------------------------- Settings --------------------------------------#
 network = 'irc.goat.chat'
 port = 6667
@@ -16,64 +14,34 @@ irc.connect ( ( network, port ) )
 print irc.recv ( 4096 )
 irc.send ( 'PASS pjmtpjmt\r\n')
 irc.send ( 'NICK monobot\r\n' )
-irc.send ( 'USER monobot monobot monobot :monoxane Python IRC bot\r\n' )
+irc.send ( 'USER monobot monobot monobot :monobot\r\n' )
 #----------------------------------------------------------------------------------#
 
 #---------------------------------- Functions -------------------------------------#
 
 def Send(chan, msg):
-    irc.send('PRIVMSG #' + chan + ' :' + msg +  '\r\n')
+    irc.send('PRIVMSG ' + chan + ' :' + msg +  '\r\n')
 
-def Join(channel):
-    irc.send ( 'JOIN ' + channel + '\r\n' )
+def Join(chan):
+    irc.send ( 'JOIN ' + chan + '\r\n' )
 
 def Part(chan):
     irc.send ( 'PART ' + chan + '\r\n' )
 
-def GetMsg():
-	x = data.split('#')[1]
-	x = x.split(':')[1]
-	info[0] = info[0].strip(' \t\n\r')
-	return(message)
-
-def GetNick():
-    nick = data.split('!')[0]
-    nick = nick.replace(':', '')
-    nick = nick.strip(' \t\n\r')
-    return nick
-
-def UserJoins():
-    time.sleep(0.5)
-    wb = random.choice(["Welcome Back", "Hello", "Welcome"])
-    GetNick(data)
-    for line in joinlog:
+def if_new_user():
+    datafile = file('joinlog.txt')
+    for line in datafile:
         if nick in line:
-            Send(wb + ' ' + nick)
+            found = True
             break
-        else:
-            Send('Welcome To The Matrix, ' +nick)
-            open(joinlog, 'a').write(data)
+    return found
 
-def ChanLang():
-    GetChan()
-    if chan == "hira":
-        lang = 'es'
-    elif chan == 'bah':
-        lang = 'en,es'
-    else:
-        lang = 'en'
-
-
-def GetChan():
-	chan1 = data.split('PRIVMSG ')[1]
-	chan1 = chan1.replaec(':', ' ')
-    chan1 = chan1.replace(' ', '')
-    chan1 = chan1.strip('#')
-    chan1 = chan1.split(' ')
-    return chan
-
-#sample :jesuspiece|america!~jesuspiece@net-d32.1t2.215.74.IP PRIVMSG #modernpowers :hahah you're good
-#------------------------------------------------------------------------------#
+def get_nick():
+    nick = data.split('!')[0]
+    nick = nick.replace(':', ' ')
+    nick = nick.replace(' ', '')
+    nick = nick.strip(' \t\n\r')
+    #------------------------------------------------------------------------------#
 while True:
     action = 'none'
     data = irc.recv ( 4096 )
@@ -82,6 +50,8 @@ while True:
     if data.find ( 'Welcome to...' ) != -1:
             Join(homechan)
             irc.send('MODE PolyBot +B')
+            time.sleep(2)
+            data = ''
 
     if data.find ( 'PING' ) != -1:
             irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
@@ -101,23 +71,73 @@ while True:
 
 		if action == 'PRIVMSG':
 
-            GetMsg(data)
-            if message = 'info' or:
-                GetChan()
-                ChanLang()
-                if lang == 'en':
-                    if chan == 'modernpowers':
-                        Send('modernpowers', 'This is the IRC channel for v/modernpowers')
-                    if chan == 'gaming':
-                        Send('gaming', 'This is the official IRC of v/gaming')
-                elif lang == 'es':
-                    if chan == 'hira':
-                        send('hira', 'Este es el principal canal Hira.io . Diviértete.')
-                elif lang == 'es,en':
-                    if chan == 'bah':
-                        Send('bah', 'This is the goat.chat help channel, IRCops are opped (@,%,~) or voiced (+) ask them any questions')
-                        Send('bah', 'Este es el canal de ayuda goat.chat , IRCops es op ( @ , % , ~ ) o expresaron ( + ) hacerles cualquier pregunta que pueda tener.')
+			if data.find('v/') != -1:
+                if data.find('jenni'):
+                    break
+                else:
+                    match = re.search('v/(\w*)', data)
+				    for group in match.groups():
+					Send(str('[voat.co/v/') + group + str(']'))
 
+			if data.find('PolyBot, ') != -1:
+				x = data.split('#')[1]
+				x = x.split('PolyBot, ')[1]
+				info = x.split(' ')
+				info = str(info[0].strip(' \t\n\r'))
 
-        if action == 'JOIN':
-            Joins()
+				if info == 'info':
+					Send('This is the IRC channel for Modern Powers,' )
+					Send('We are a country roleplaying game' )
+					Send('We are based at v/modernpowers' )
+					Send('For more info go to:\00310 voat.co/v/modernpowers\003' )
+					Send('For a starters guide go to:\00310 http://goo.gl/1xsyR3\003' )
+					Send('For the rules go to:\00310 http://goo.gl/eiXwlL\003' )
+					Send('And for a timeline of events go to:\00310 http://goo.gl/alZZvM \003' )
+				elif info == 'poem':
+					Send('Do not go gentle into that good night,')
+					Send('Old age should burn and rave at close of day;')
+					Send('Rage, rage against the dying of the light.')
+					Send(' ')
+					Send('Though wise men at their end know dark is right,')
+					Send('Because their words had forked no lightning they')
+					Send('Do not go gentle into that good night.')
+				elif info == 'claim':
+					Send('Claims Info,')
+					Send('Current Claimed and Unclaimed Countries:\00310 https://goo.gl/v5X7i7 \003 ')
+					Send(' ')
+					Send('Claims Form:\00310 https://goo.gl/awtdj6\003')
+				elif info == 'halo':
+					Send('.tell Halofreak1171|UK Hey Halo. (This is an automated message)')
+				elif info == 'ping':
+					Send('pong')
+
+				elif info == 'hi':
+					GetNick(data)
+					Send('Hi! ' + nick)
+		                elif info[0] == 'spam':
+					Send('---------------Spam Spam Spam Spammity Spam----------------')
+				elif info[0] == 'version':
+					Send('2.0')
+
+				else:
+					nick = data.split('!')[0]
+					nick = nick.replace(':', ' ')
+					nick = nick.replace(' ', '')
+					nick = nick.strip(' \t\n\r')
+					Send("I'm sorry "+ nick +", I'm afraid I can't do that")
+    if action == 'JOIN':
+        open("joinlog.txt", 'a').write(data)
+        time.sleep(0.5)
+        wb = random.choice(["Welcome Back", "Hello", "Welcome"])
+        nick = data.split('!')[0]
+        nick = nick.replace(':', ' ')
+        nick = nick.replace(' ', '')
+        nick = nick.strip(' \t\n\r')
+        datafile = file('joinlog.txt')
+        for line in datafile:
+            if nick in line:
+                Send('Welcome To The Matrix, ' +nick)
+                break
+            else:
+                Send(wb + ' ' + nick)
+                break
