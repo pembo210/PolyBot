@@ -5,8 +5,6 @@ import re
 import time
 import random
 #----------------------------------- Settings --------------------------------------#
-#     Based on github.com/monoxane/polybot
-#-----------------------------------------------------------------------------------#
 network = 'irc.goat.chat'
 port = 6667
 homechan = '#rickandmorty'
@@ -17,7 +15,7 @@ irc.send ( 'NICK ButterBot\r\n' )
 irc.send ( 'USER ButterBot ButterBot ButterBot :Python IRC\r\n' )
 # irc.send ( 'PASS pjmtpjmt\r\n')
 #----------------------------------------------------------------------------------#
-
+#     Based on github.com/monoxane/polybot
 #---------------------------------- Functions -------------------------------------#
 
 def Send(msg):
@@ -65,14 +63,11 @@ while True:
 
 		if action == 'PRIVMSG':
 
-
+            # since we dont't have jenni #
 			if data.find('v/') != -1:
-				x = data.split('#')[1]
-				x = x.split('v/')[1]
-				subverse = x.split(' ')
-				subverse[0] = subverse[0].strip(' \t\n\r')
-                # since we dont't have jenni #
-				Send(str('https://voat.co/v/') + subverse)
+ 				match = re.search('v/(\w*)', data)
+				for group in match.groups():
+					Send(str('https://voat.co/v/') + group + str(''))
 
 			if data.find('pass the butter') != -1:
 				Send('What is my purpose? ')
@@ -92,13 +87,14 @@ while True:
 					Send("It's, it's, it's a chat thing. A brand new chat, uuuurp, thing that's just starting. " )
 					Send('You, you gotta visit the sub too Morty! \00310 https://voat.co/v/rickandmorty\003' )
 					Send("I hope you were listening, because I, I, I'm not going to repeat myself" )
-                    
+
 				elif info[0] == 'pass the butter':
 					Send('What is my purpose? ' )
-                    
+
+
 				elif info[0] == 'you pass butter':
 					Send('OH, MY GOD! ' )
-                    
+
 				elif info[0] == 'ping':
 					Send('pong')
 
