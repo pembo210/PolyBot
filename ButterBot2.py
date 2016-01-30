@@ -163,11 +163,13 @@ while True:
 				info[0] = info[0].strip(' \t\n\r')
 
 				if info[0] == 'info':
+					irc.send ( 'NICK Rick_Sanchez\r\n' )
 					Send('Wake up, uurp, Morty. I have a surprise for you. Buuuurp. You have to get up. ' )
 					Send("C'mon Morty, get up. We're going to try this thing out Morty. " )
 					Send("It's, it's, it's a chat thing. A brand new chat, uuuurp, thing that's just starting. " )
 					Send('You, you gotta visit the sub too Morty! \00310 https://voat.co/v/rickandmorty\003' )
 					Send("I hope you were listening, because, buuuurp, I'm not going to repeat myself." )
+					irc.send ( 'NICK ButterBot\r\n' )
 
 				elif info[0] == 'pass the butter':
 					Send('What is my purpose? ' )
@@ -186,6 +188,13 @@ while True:
 
 				elif info[0] == 'version':
 					Send('2.0')
+
+				elif info[0] == 'help':
+					Send('The followingo words and phrases trigger the bot: ' )
+					Send('texting, unity, schwifty, robots, vagina, ' )
+					Send('get your shit together, ' )
+					Send('my testicles, doctor, shotgun, get it, Pluto, ' )
+					Send('meeseeks, bird culture' )
 
 				else:
 					nick = data.split('!')[0]
