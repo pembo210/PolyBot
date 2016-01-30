@@ -38,8 +38,7 @@ def GetMsg():
 
 def GetNick():
     nick = data.split('!')[0]
-    nick = nick.replace(':', ' ')
-    nick = nick.replace(' ', '')
+    nick = nick.replace(':', '')
     nick = nick.strip(' \t\n\r')
     return nick
 
@@ -102,8 +101,8 @@ while True:
 
 		if action == 'PRIVMSG':
 
-            GetMessage(data)
-            if message = info:
+            GetMsg(data)
+            if message = 'info' or:
                 GetChan()
                 ChanLang()
                 if lang == 'en':
@@ -117,8 +116,8 @@ while True:
                 elif lang == 'es,en':
                     if chan == 'bah':
                         Send('bah', 'This is the goat.chat help channel, IRCops are opped (@,%,~) or voiced (+) ask them any questions')
-                        Send('bah', 'Este es el canal de ayuda goat.chat , IRCops es op ( @ , % , ~ ) o expresaron ( + ) hacerles cualquier pregunta que pueda tener.
-')
+                        Send('bah', 'Este es el canal de ayuda goat.chat , IRCops es op ( @ , % , ~ ) o expresaron ( + ) hacerles cualquier pregunta que pueda tener.')
+
 
         if action == 'JOIN':
             Joins()
