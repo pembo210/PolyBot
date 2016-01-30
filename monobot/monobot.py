@@ -48,13 +48,13 @@ while True:
     print data
 
     if data.find ( 'Welcome to...' ) != -1:
-            Join(homechan)
-            irc.send('MODE PolyBot +B')
-            time.sleep(2)
-            data = ''
+    	Join(homechan)
+	irc.send('MODE PolyBot +B')
+	time.sleep(2)
+        data = ''
 
     if data.find ( 'PING' ) != -1:
-            irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
+        irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
 
 
     #--------------------------- Action check --------------------------------#
@@ -69,15 +69,15 @@ while True:
     #----------------------------- Actions -----------------------------------#
     if action != 'none':
 
-		if action == 'PRIVMSG':
+	if action == 'PRIVMSG':
 
-			if data.find('v/') != -1:
+		if data.find('v/') != -1:
                 if data.find('jenni'):
                     break
                 else:
                     match = re.search('v/(\w*)', data)
-				    for group in match.groups():
-					Send(str('[voat.co/v/') + group + str(']'))
+			for group in match.groups():
+			Send(str('[voat.co/v/') + group + str(']'))
 
 			if data.find('PolyBot, ') != -1:
 				x = data.split('#')[1]
