@@ -65,14 +65,6 @@ while True:
     if action != 'none':
 		
 		if action == 'PRIVMSG':
-
-			if data.find('v/') != -1:
- 				if data.find('http*://'):
- 					print('Full URL')
- 				else:
- 					match = re.search('v/(\w*)', data)
-					for group in match.groups():
-						Send(str('[voat.co/v/') + group + str(']'))
 				
 			if data.find('PolyBot, ') != -1:
 				x = data.split('#')[1]
