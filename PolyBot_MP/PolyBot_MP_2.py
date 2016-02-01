@@ -68,7 +68,7 @@ while True:
 
 			if data.find('v/') != -1:
  				if data.find('http*://'):
- 					Print('Full URL')
+ 					print('Full URL')
  				else:
  					match = re.search('v/(\w*)', data)
 					for group in match.groups():
