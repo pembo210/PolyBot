@@ -67,8 +67,8 @@ while True:
 		if action == 'PRIVMSG':
 
 			if data.find('v/') != -1:
- 				if data.find('jenni'):
- 					break
+ 				if data.find('http*://'):
+ 					Print('Full URL')
  				else:
  					match = re.search('v/(\w*)', data)
 					for group in match.groups():
