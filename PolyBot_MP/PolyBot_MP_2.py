@@ -45,7 +45,7 @@ while True:
 
     if data.find ( 'Welcome to...' ) != -1:
             Join(homechan)
-            irc.send('MODE '+nick' +B')
+            irc.send('MODE '+nick+' +B')
             time.sleep(2)
             data = ''
 
